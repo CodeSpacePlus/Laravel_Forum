@@ -19,9 +19,9 @@ class Thread extends Model
         parent::boot();
 
         // Global queryset replies_count to get number of replies of each thread
-        static::addGlobalScope('replyCount', function ($builder){
-            $builder->withCount('replies');
-        });
+        // static::addGlobalScope('replyCount', function ($builder){
+        //     $builder->withCount('replies');
+        // });
 
         // When deleting a thread; delete all replies associated with it
         static::deleting(function ($thread){
@@ -58,5 +58,15 @@ class Thread extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+    public function subscribe()
+    {
+
+    }
+
+    public function subscription()
+    {
+        return $this->hasMany(ThreadSubscription::class);
     }
 }

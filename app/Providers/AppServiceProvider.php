@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
         \View::composer('*', function ($view){
             $channels = \Cache::rememberForever('channel', function (){
                 return Channel::all();
